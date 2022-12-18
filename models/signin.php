@@ -9,7 +9,6 @@ class signIn
         require("../api/connection.php");
         $sql = $conn->query("SELECT * FROM users where username='$username' and password='$pass';");
         $res = $sql->rowCount();
-        // echo json_encode($res);
         if ($res!=0){
             return true;
         } else return false;

@@ -24,24 +24,14 @@
          let productbody = $("#product");
          productbody.html("");
          for (let i = 0; i < data.length; i++) {
-           let vote = "";
-           for (let j = 0; j < data[i]['vote']; j++) {
-             vote += "&#9733; ";
-           }
-           for (let j =data[i]['vote'];j<5;j++){
-             vote+="&#9734; ";
-           }
            let product = `
              <div class="col-lg-4 col-md-6 mb-4">
              <div class="card h-100">
-               <a href="#product"><img class="card-img-top" src="../${data[i]['image']}" alt=""></a>
                <div class="card-body">
                  <h4 class="card-title">
                    <a href="#product">${data[i]['name']}</a>
                  </h4>
                  <h5 style="color: #f47442">${formatter.format(data[i]['price'])}</h5>
-                 <p class="card-text">${data[i]['description']}</p>
-                 <small class="text-muted">${vote}</small>
                </div>
                <div class="card-footer">
                  <button id="${data[i]['id']}" onclick="addToCard(${data[i]['id']})" type="button" class="btn btn-primary">Add to cart</button>

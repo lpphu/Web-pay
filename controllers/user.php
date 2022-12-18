@@ -72,12 +72,6 @@
         <div class="col-lg-3">
 
           <h1 class="my-4">EHM Shop</h1>
-          <h2 class="my-3">Categories:</h2>
-          <div class="list-group">
-            <?php
-                require_once("../api/show_category.php");
-            ?>
-          </div>
         </div>
         <!-- /.col-lg-3 -->
 
@@ -109,8 +103,48 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-
+            
+          
           <div class="row" id="product">
+            <?php
+              require_once("../api/connection.php");
+              $sql = "SELECT * from product;";
+              try{
+                  $stmt = $conn->prepare($sql);
+                  $stmt->execute();
+              }
+              catch(PDOException $ex){
+                  die(json_encode(array('status' => false, 'data' => $ex->getMessage())));
+              }
+              $data = array();
+              while ($r = $stmt->fetch(PDO::FETCH_ASSOC))
+              {
+                  $data[] = ["prodid"=>$r["prodid"],"name" => $r["prodname"], "quantity" => $r["quantity"], "price" => $r["price"]];
+              }
+              foreach($data as $key => $i){
+                $id = $i["prodid"];
+                $name = $i["name"];
+                $price = $i["price"];
+                $quantity = $i["quantity"];
+                echo "<div class='col-lg-4 col-md-6 mb-4'>
+                  <div class='card h-100'>
+                    <div class='card-body'>
+                      <h4 class='card-title'>
+                      <a href='#product'>$name</a>
+                      </h4>
+                      <h5 style='color: #f47442'>Price: $price</h5>
+                      <h5 style='color: #f47442'>Quantity: $quantity</h5>
+                    </div>
+                    <div class='card-footer'>
+                      <button id='$id' onclick='addToCard()'' type='button' class='btn btn-primary'>Add to cart</button>
+                    </div>
+                  </div> 
+                </div>";
+              }
+              ?>
+  
+            </div>
+
 
           </div>
           <!-- /.row -->
@@ -135,7 +169,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/user.js"></script>
+    <!-- <script src="../js/user.js"></script> -->
   </body>
 
 </html>
