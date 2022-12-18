@@ -105,12 +105,12 @@
             
           
           <div class="row" id="product">
-            <?php
+          <?php
               require_once("../api/connection.php");
               $sql = "SELECT * from product;";
               try{
-                  $stmt = $conn->prepare($sql);
-                  $stmt->execute();
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
               }
               catch(PDOException $ex){
                   die(json_encode(array('status' => false, 'data' => $ex->getMessage())));

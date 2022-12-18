@@ -5,7 +5,9 @@ class signIn
     public function login($username,$pass)
     {
         if ($username=='admin' && $pass=='123456'){
-            return true;
+            $_SESSION["username"] = $username;
+
+            return false;
         }
         require("../api/connection.php");
         $sql = $conn->query("SELECT * FROM users where username='$username' and password='$pass';");
