@@ -7,7 +7,7 @@ class signIn
             return true;
         }
         require("../api/connection.php");
-        $sql = $conn->query("SELECT * FROM taikhoan where username='$username' and matkhau='$pass';");
+        $sql = $conn->query("SELECT * FROM users where username='$username' and password='$pass';");
         $res = $sql->rowCount();
         // echo json_encode($res);
         if ($res!=0){

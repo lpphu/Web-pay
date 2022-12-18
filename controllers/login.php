@@ -15,9 +15,16 @@
   <div class="login-page">
   <div class="form">
     <form action="../models/regis.php" method="post"class="register-form">
-      <input name="username" type="text" placeholder="name"/>
+      <input name="username" type="text" placeholder="username"/>
       <input name="password" type="password" placeholder="password"/>
-      <input name="email" type="text" placeholder="email address"/>
+      <input name="fullname" type="text" placeholder="fullname"/>
+      <input name="phone" type="tel" placeholder="phone"/>
+      <input name="bdate" type="date"/>
+      <input name="address" type="text" placeholder="address"/>
+      <input type="radio" name="gender" id="male" value="M">
+      <label for="male">Male</label>
+      <input type="radio" name="gender" id="female" value="F">
+      <label for="female">Feale</label>
       <button type="submit">create</button>
       <p class="message">Already registered? <a href="#">Sign In</a></p>
     </form>
