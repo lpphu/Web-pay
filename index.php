@@ -23,7 +23,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href=""><img height="50"src="./logo/kshop.png"></img> EHM SHOP</a>
+        <a class="navbar-brand" href=""><img height="50"src="logo/kshop.png"></img> EHM SHOP</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,10 +35,10 @@
               </a>
             </li>
               <li class="nav-item">
-                  <a class="nav-link" href="./controllers/login.php">Login</a>
+                  <a class="nav-link" href="./controllers/logout.php">Log In</a>
               </li>
             <li class="nav-item">
-              <a class="nav-link" href="./controllers/login.php">Cart (0 items)</a>
+                <a class="nav-link" href="./views/cart.php" id="myCart">Cart (0 items)</a>
             </li>
           </ul>
         </div>
@@ -53,12 +53,6 @@
         <div class="col-lg-3">
 
           <h1 class="my-4">EHM Shop</h1>
-          <h2 class="my-3">Categories:</h2>
-          <div class="list-group">
-            <?php
-                require_once("./api/show_category.php");
-            ?>
-          </div>
         </div>
         <!-- /.col-lg-3 -->
 
@@ -72,13 +66,13 @@
             </ol>
             <div class="carousel-inner" role="listbox">
               <div class="carousel-item active text-center align-center">
-                <img class="d-inline img-fluid" src="./images/nokia-3-2-400x460.png" alt="First slide">
+                <img class="d-inline img-fluid" src="images/nokia-3-2-400x460.png" alt="First slide">
               </div>
               <div class="carousel-item text-center align-center">
-                <img class="d-inline img-fluid" src="./images/iphone-7-plus-128gb-de-400x460.png" alt="Second slide">
+                <img class="d-inline img-fluid" src="images/iphone-7-plus-128gb-de-400x460.png" alt="Second slide">
               </div>
               <div class="carousel-item text-center align-center">
-                <img class="d-inline img-fluid" src="./images/samsung-galaxy-j3-2017-2-400x460.png" alt="Third slide">
+                <img class="d-inline img-fluid" src="images/samsung-galaxy-j3-2017-2-400x460.png" alt="Third slide">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -90,8 +84,48 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-
+            
+          
           <div class="row" id="product">
+            <?php
+              require_once("api/connection.php");
+              $sql = "SELECT * from product;";
+              try{
+                  $stmt = $conn->prepare($sql);
+                  $stmt->execute();
+              }
+              catch(PDOException $ex){
+                  die(json_encode(array('status' => false, 'data' => $ex->getMessage())));
+              }
+              $data = array();
+              while ($r = $stmt->fetch(PDO::FETCH_ASSOC))
+              {
+                  $data[] = ["prodid"=>$r["prodid"],"name" => $r["prodname"], "quantity" => $r["quantity"], "price" => $r["price"]];
+              }
+              foreach($data as $key => $i){
+                $id = $i["prodid"];
+                $name = $i["name"];
+                $price = $i["price"];
+                $quantity = $i["quantity"];
+                echo "<div class='col-lg-4 col-md-6 mb-4'>
+                  <div class='card h-100'>
+                    <div class='card-body'>
+                      <h4 class='card-title'>
+                      <a href='#product'>$name</a>
+                      </h4>
+                      <h5 style='color: #f47442'>Price: $price</h5>
+                      <h5 style='color: #f47442'>Quantity: $quantity</h5>
+                    </div>
+                    <div class='card-footer'>
+                      <button id='$id' onclick='addToCard($id)'' type='button' class='btn btn-primary'>Add to cart</button>
+                    </div>
+                  </div> 
+                </div>";
+              }
+              ?>
+  
+            </div>
+
 
           </div>
           <!-- /.row -->
@@ -116,7 +150,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="./js/index.js"></script>
+    <!-- <script src="../js/user.js"></script> -->
   </body>
 
 </html>
