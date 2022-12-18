@@ -53,7 +53,7 @@
               </a>
             </li>
               <li class="nav-item">
-                  <a class="nav-link" href="logout.php">Admin(Logout)</a>
+                  <a class="nav-link" href="logout.php"><?= $_SESSION["username"]?>(Logout)</a>
               </li>
             <li class="nav-item">
                 <a class="nav-link" href="../views/cart.php" id="myCart">Cart (0 items)</a>
