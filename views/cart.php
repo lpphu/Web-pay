@@ -24,41 +24,15 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <td colspan="7">
-                <button type="button" class="btn btn-primary"><a href="../controllers/user.php" style="color: white;text-decoration: none;">Tiếp tục mua hàng</a></button>
-            </td>
-        </tr>
-        <tr>
-            <th>Ảnh</th>
             <th>STT</th>
             <th>Tên sản phẩm</th>
             <th>Số lượng</th>
             <th>Giá</th>
             <th>Thành tiền</th>
-            <th>Xóa</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-
-            <td><img src="../images/samsung-galaxy-j7-plus-1-400x460.png" style="max-height: 50px"></td>
-            <td>STT</td>
-            <td>Tên sản phẩm</td>
-            <td><input type="number" value="1"></td>
-            <td><p>125,000 đ</p></td>
-            <td>125,000 đ</td>
-            <td><button type="button" class="btn btn-danger">Xóa</button></td>
-        </tr>
-        <tr>
-
-            <td><img src="../images/samsung-galaxy-j7-plus-1-400x460.png" style="max-height: 50px"></td>
-            <td>STT</td>
-            <td>Tên sản phẩm</td>
-            <td><input type="number" value="1"></td>
-            <td><p>125,000 đ</p></td>
-            <td>125,000 đ</td>
-            <td><button type="button" class="btn btn-danger">Xóa</button></td>
-        </tr>
+        
         <tr>
             <td colspan="7" style="text-align: right">
                 <button type="button" class="btn btn-success">Cập nhật giỏ hàng</button>

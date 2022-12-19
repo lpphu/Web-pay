@@ -24,14 +24,11 @@ function get_cart(type) {
       for (let i = 0; i < data.length; i++) {
         let product = `
             <tr>
-
-                <td><img src="../${data[i]['image']}" style="max-height: 50px"></td>
                 <td>${i+1}</td>
                 <td>${data[i]['name']}</td>
                 <td><input min='0' type="number" value="${data[i]['quantity']}"></td>
                 <td><p>${formatter.format(data[i]['price'])}</p></td>
-                <td>${formatter.format(data[i]['thanhtien'])}</td>
-                <td><button type="button" class="btn btn-danger" disabled>Xóa</button></td>
+                <td>${formatter.format(data[i]['price']*data[i]['quantity'])}</td>
             </tr>
         `;
         tbody.append(product);
