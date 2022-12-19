@@ -145,7 +145,7 @@
                       <h5 style='color: #f47442'>Quantity: $quantity</h5>
                     </div>
                     <div class='card-footer'>
-                      <button id='$id' onclick='addToCard($i)'' type='button' class='btn btn-primary'>Add to cart</button>
+                      <button id='$id' onclick='addToCard($id)'' type='button' class='btn btn-primary'>Add to cart</button>
                     </div>
                   </div> 
                 </div>";
